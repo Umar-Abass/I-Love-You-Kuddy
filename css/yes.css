@@ -1,0 +1,48 @@
+body {
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  max-width: 600px;
+}
+
+.bears img {
+  width: 200px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive: tablet and phone */
+@media (max-width: 900px) {
+  body {
+    padding: 20px;
+  }
+  .card {
+    max-width: 92%;
+    padding: 28px;
+  }
+  .bears img {
+    width: 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+    overflow-x: hidden;
+  }
+  .card {
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 14px;
+  }
+  .bears img {
+    width: 120px;
+  }
+}

@@ -1,0 +1,644 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Document</title>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card text-center p-4 shadow-lg border-0">
+    <h1 class="text-danger mb-3">💖 Hey Beautiful 💖</h1>
+    <p class="lead text-muted">I made this just for you...<br>Will you be my girlfriend?</p>
+    <div class="d-flex justify-content-center gap-3 mt-4 position-relative">
+      <button id="yesBtn" class="btn btn-lg btn-danger rounded-pill">Yes 💕</button>
+      <button id="noBtn" class="btn btn-lg btn-secondary rounded-pill">No 🙈</button>
+    </div>
+  </div>
+
+
+
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html> -->
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Will you be my girlfriend?</title>
+<style>
+  :root{
+    --bg:#fff7f8;
+    --card:#fff;
+    --accent:#ff6b8a;
+    --accent-2:#ffb6c1;
+    --muted:#6b6b6b;
+    --glass: rgba(255,255,255,0.6);
+    --shadow: 0 8px 30px rgba(19,12,46,0.07);
+    --radius:20px;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  /* Page reset */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    background: radial-gradient(circle at 10% 10%, #fff3f4 0%, var(--bg) 40%), linear-gradient(180deg,#fff 0%,#fff6f8 100%);
+    color:#222;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+  }
+
+  /* Outer card */
+  .card{
+    width:min(880px,95%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,250,251,0.85));
+    border-radius:calc(var(--radius));
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    position:relative;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    min-height:520px;
+    align-items:stretch;
+  }
+
+  /* Left: simple, clean intro */
+  .left{
+    padding:48px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:18px;
+  }
+  .small{
+    font-size:14px;
+    color:var(--muted);
+    letter-spacing:0.4px;
+  }
+  h1{
+    margin:0;
+    font-size:34px;
+    line-height:1.02;
+    letter-spacing:-0.5px;
+    color:#222;
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .subtitle{
+    margin:0;
+    margin-top:6px;
+    color: #494949;
+    font-size:17px;
+  }
+
+  /* typed line */
+  .typed{
+    margin-top:12px;
+    font-size:20px;
+    color:#333;
+    min-height:66px;
+    white-space:pre-wrap;
+  }
+
+  /* button row */
+  .cta-row{
+    margin-top:20px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .btn{
+    padding:12px 18px;
+    border-radius:12px;
+    border:0;
+    cursor:pointer;
+    font-weight:600;
+    font-size:15px;
+    box-shadow: 0 6px 18px rgba(99,30,60,0.08);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{
+    background: linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:white;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--accent);
+    border:1px solid rgba(255,107,138,0.12);
+  }
+
+  /* Right: dramatic reveal area */
+  .right{
+    background:
+      linear-gradient(180deg, rgba(255,245,247,0.6), rgba(255,238,241,0.6)),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="%23ffffff" stop-opacity="0.2"/><stop offset="1" stop-color="%23ffeef2" stop-opacity="0.1"/></linearGradient></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>') center/cover no-repeat;
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+  }
+  .pill{
+    background:var(--glass);
+    padding:10px 14px;
+    border-radius:999px;
+    backdrop-filter: blur(6px);
+    border:1px solid rgba(255,255,255,0.6);
+    box-shadow:0 6px 18px rgba(19,12,46,0.03);
+  }
+
+  .card-heart{
+    width:140px;height:140px;border-radius:999px;
+    background:linear-gradient(135deg,#fff 0%, rgba(255,255,255,0.75) 30%, rgba(255,255,255,0.5) 100%);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 20px 50px rgba(255,90,120,0.12), inset 0 -6px 30px rgba(255,107,138,0.06);
+  }
+
+  /* big reveal text */
+  .reveal{
+    font-size:28px;
+    font-weight:800;
+    color: #7a0730;
+    text-align:center;
+    letter-spacing:-0.4px;
+    margin:6px 0 0 0;
+    min-height:72px;
+  }
+
+  .button-grid{
+    display:flex;
+    gap:12px;
+    margin-top:18px;
+    align-items:center;
+  }
+
+  .btn-yes{
+    background: linear-gradient(90deg,#ff6b8a,#ff9fb0);
+    color:white;
+    padding:12px 20px;
+    border-radius:12px;
+    box-shadow: 0 10px 30px rgba(255,90,120,0.14);
+  }
+
+  .btn-no{
+    background:transparent;
+    border:1px solid rgba(120,20,50,0.12);
+    color:#8a2b47;
+    padding:12px 20px;
+    border-radius:12px;
+    position:relative;
+  }
+
+  /* floating hearts and emojis */
+  .float-area{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .float{
+    position:absolute;
+    will-change:transform,opacity;
+    font-size:20px;
+    opacity:0.95;
+    transform-origin:center;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp{
+    from{transform: translateY(40vh) scale(.9); opacity:0}
+    6%{opacity:1}
+    to{transform: translateY(-10vh) scale(1.05); opacity:0}
+  }
+
+  /* confetti for celebration */
+  .confetti {
+    position:fixed; left:0; top:0; width:100%; height:0; pointer-events:none; z-index:9999;
+  }
+
+  /* celebration modal CSS removed */
+
+  /* responsive */
+  @media (max-width: 880px) {
+    /* tablet & mobile: side-by-side with elegant spacing */
+    body { align-items: flex-start; padding: 16px; }
+    .card { grid-template-columns: 1fr 1fr; padding: 0; min-height: auto; width: 100%; gap: 8px; }
+    .left { padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+    .right { padding: 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .card-heart { width: 120px; height: 120px; }
+    h1 { font-size: 28px; line-height: 1.1; }
+    .subtitle { font-size: 15px; }
+    .typed { font-size: 15px; min-height: auto; margin-top: 12px; }
+    .reveal { font-size: 26px; margin: 16px 0; }
+    .pill { padding: 10px 14px; font-size: 13px; margin-bottom: 12px; }
+    .button-grid { gap: 12px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+    .cta-row { margin-top: 18px; }
+    .small { font-size: 13px; }
+  }
+
+  /* cute little pulsing sparkle on primary */
+  .sparkle{
+    position:relative;
+  }
+  .sparkle::after{
+    content:""; position:absolute; right:-8px; top:-8px; width:10px; height:10px;
+    background:radial-gradient(circle,#fff6 0%, transparent 60%); border-radius:50%;
+    filter:blur(6px); opacity:.9;
+  }
+
+  /* accessible focus */
+  .btn:focus{outline:3px solid rgba(255,107,138,0.16); outline-offset:3px}
+</style>
+</head>
+<body>
+
+<div class="card" role="main" aria-labelledby="main-title">
+  <div class="float-area" id="floatArea" aria-hidden="true"></div>
+
+  <section class="left" aria-label="Intro">
+    <div class="pill small">Hey — this is for you (Kuddy) ❤</div>
+    <h1 id="main-title">Happy Valentines Day.</h1>
+    <p class="subtitle"></p>
+
+    <div class="typed" id="typed" aria-live="polite"></div>
+
+    <div class="cta-row">
+      <button class="btn btn-primary sparkle" id="continueBtn">Continue</button>
+      <!-- <button class="btn btn-ghost" id="customizeBtn" title="Change the first line">Choose a different line</button> -->
+    </div>
+
+    <p class="small" id="hint"></p>
+  </section>
+
+  <section>
+  <aside class="right" aria-label="Reveal area">
+    <div class="pill">special reveal</div>
+
+    <div class="card-heart" aria-hidden="true">
+      <!-- heart SVG -->
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 21s-7.5-4.7-9.7-8.3C-0.3 8.1 4.2 3 7.7 6.3 9.6 8.1 12 10.8 12 10.8s2.4-2.7 4.3-4.5C19.8 3 24.3 8.1 21.7 12.7 20 16.3 12 21 12 21z"
+          fill="#ff6b8a" opacity="0.9"></path>
+      </svg>
+    </div>
+
+    <div class="reveal" id="revealText">Ready?</div>
+
+    <div class="button-grid" id="buttonGrid" aria-hidden="true">
+      <button class="btn btn-yes" id="yesBtn">Yes 💕</button>
+      <button class="btn btn-no" id="noBtn" aria-label="No (playful)">No</button>
+      <button class="btn btn-ghost" id="defYesBtn">Definitely Yes 💘</button>
+    </div>
+  </aside>
+  </section>
+
+</div>
+
+<!-- confetti container -->
+<div class="confetti" id="confetti"></div>
+
+<!-- modal removed -->
+
+<script>
+/* ========= ALL LINES =========
+   44 asking lines + many more variations included.
+   The script types a selected line and the reveal shows the final question.
+*/
+const lines = [
+  // Soft romantic
+  "so i haven't ask you this so ",
+  // "You feel like home in a world that never stops moving.",
+  // "You make my days softer and my nights warmer.",
+  // "You’re the kind of person hearts write poetry about.",
+  // "Every time I see you, something inside me smiles.",
+  // "You’re the calm I didn’t know I needed.",
+  // "Your presence feels like a hug my soul recognizes.",
+  // "I don’t believe in perfect… but you came close.",
+
+  // Cute & playful
+  // "Hi, I like you. Like… a lot.",
+  // "I don’t know what you’re doing to me, but please don’t stop.",
+  // "You make my heart do backflips and it’s kind of embarrassing.",
+  // "Can you stop being this fine? I’m trying to concentrate.",
+  // "If I had a dollar for every time I thought about you… I’d be rich enough to take you out forever.",
+  // "You stole my hoodie but somehow got my heart too.",
+  // "Warning: I smile like an idiot when I see your name.",
+
+  // Flirty
+  // "I don’t want your body… just your heart. (Okay your body too.)",
+  // "Careful, you’re making it very hard not to fall for you.",
+  // "I want to be the reason you go to bed smiling.",
+  // "You’re dangerously attractive. I need a seatbelt.",
+  // "If liking you is wrong… then I never want to be right.",
+  // "You look like trouble. And I like trouble.",
+  // "I wasn’t planning to fall, but you made it look too good.",
+
+  // Emotional sweet
+  // "You’re the safest place I’ve ever found.",
+  // "I feel lucky that my heart chose you.",
+  // "I don’t need everything… I just need you.",
+  // "You make me want to be a better version of myself.",
+  // "I didn’t believe in soul connections… until you.",
+  // "The world feels softer when I think of you.",
+  // "You walked into my life and everything got lighter.",
+
+  // Poetic
+  // "Your smile is sunlight. Your voice feels like rain.",
+  // "Some people feel like chapters… you feel like the whole book.",
+  // "You’re the quiet miracle I didn’t see coming.",
+  // "If hearts had gravity, mine would orbit around you.",
+  // "You’re the kind of beautiful that makes time slow down.",
+
+  // Smooth confident
+  // "I’m not here to play games… I want you.",
+  // "You don’t need to try. You already have my attention.",
+  // "If reassurance had a name, it would be you.",
+  // "I don’t chase… but for you, I’d sprint.",
+  // "Tell me why you’re this perfect. I’m listening.",
+
+  // Asking lines / final
+  // "There’s something important I want to ask the girl who makes me blush every day…",
+  // "If I asked you to be mine, would your heart say yes?",
+  // "I want you. Officially. Completely. Publicly.",
+  // "Let’s stop 'almost' and make it real—be my girlfriend?",
+  // "I want this—us. Will you be my girlfriend?"
+];
+
+const finalAsk = "Will you be my Val?"; // big reveal
+
+/* ===== tiny helpers ===== */
+const typedEl = document.getElementById('typed');
+const revealEl = document.getElementById('revealText');
+const continueBtn = document.getElementById('continueBtn');
+const customizeBtn = document.getElementById('customizeBtn');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const defYesBtn = document.getElementById('defYesBtn');
+const buttonGrid = document.getElementById('buttonGrid');
+const floatArea = document.getElementById('floatArea');
+
+let selectedLine = lines[Math.floor(Math.random()*lines.length)];
+let typedTimeouts = [];
+
+/* Typewriter effect */
+function typeText(el, text, speed=34){
+  clearTyped();
+  el.textContent = '';
+  let i = 0;
+  function tick(){
+    if(i < text.length){
+      el.textContent += text[i++];
+      typedTimeouts.push(setTimeout(tick, speed + (Math.random()*30 - 10)));
+    } else {
+      // done
+    }
+  }
+  tick();
+}
+function clearTyped(){
+  typedTimeouts.forEach(t=>clearTimeout(t));
+  typedTimeouts = [];
+}
+
+/* Random floating emojis/hearts generator */
+const floatChars = ["❤","💗","🌸","✨","💕","💘","🥰","😍","🌟"];
+function spawnFloat(){
+  const el = document.createElement('div');
+  el.className = 'float';
+  el.style.left = Math.random()*100 + '%';
+  el.style.fontSize = (12 + Math.random()*26) + 'px';
+  el.style.animationDuration = (6 + Math.random()*6) + 's';
+  el.style.transform = `translateY(${20 + Math.random()*10}vh)`;
+  el.textContent = floatChars[Math.floor(Math.random()*floatChars.length)];
+  floatArea.appendChild(el);
+  // remove when animation done
+  setTimeout(()=>el.remove(), 14000);
+}
+let floatInterval = setInterval(spawnFloat, 700);
+for(let i=0;i<6;i++) spawnFloat();
+
+/* Setup initial typed line */
+typeText(typedEl, selectedLine);
+
+/* Continue -> start reveal animation */
+continueBtn.addEventListener('click', startReveal);
+
+function startReveal(){
+  // type a little flourish then show reveal
+  typeText(typedEl, selectedLine + "\n\n(press below to reveal...)");
+  // small delay to build suspense
+  setTimeout(()=>{
+    // hide hint, show buttons and animate reveal typing
+    document.getElementById('hint').style.opacity = 0;
+    showRevealText("...preparing your answer");
+    setTimeout(()=>showGifReveal(), 1000);
+  }, 900);
+}
+
+function showRevealText(text){
+  // slow type for reveal area
+  revealEl.textContent = '';
+  let i=0;
+  function tick(){
+    if(i < text.length){
+      revealEl.textContent += text[i++];
+      setTimeout(tick, 36 + (Math.random()*25));
+    } else {
+      // after minor pause, show final buttons
+      setTimeout(()=> {
+        buttonGrid.style.opacity = 1;
+        buttonGrid.style.transform = 'translateY(0)';
+        buttonGrid.removeAttribute('aria-hidden');
+      }, 220);
+    }
+  }
+  tick();
+}
+
+function showGifReveal(){
+  // type the final big ask with dramatic pause
+  revealEl.textContent = '';
+  const lead = "Okay—here it goes...";
+  let i=0;
+  function leadTick(){
+    if(i < lead.length){
+      revealEl.textContent += lead[i++];
+      setTimeout(leadTick, 36);
+    } else {
+      setTimeout(()=>typeFinal(finalAsk, 48), 700);
+    }
+  }
+  leadTick();
+}
+
+function typeFinal(text, speed){
+  revealEl.textContent = '';
+  let i=0;
+  function tick(){
+    if(i < text.length){
+      revealEl.textContent += text[i++];
+      setTimeout(tick, speed);
+    } else {
+      // done — make buttons lively
+      buttonGrid.style.opacity = 1;
+      buttonGrid.style.transform = 'translateY(0)';
+      buttonGrid.removeAttribute('aria-hidden');
+      wiggleButtons();
+    }
+  }
+  tick();
+}
+
+/* Wiggle / playful no-button */
+function wiggleButtons(){
+  // occasionally move the "No" button away
+  noBtn.style.transition = 'transform .22s ease';
+  let move = 0;
+  function shuffle(){
+    // if element removed from DOM or user clicked yes quit
+    if(!document.body.contains(noBtn)) return;
+    move++;
+    const dx = (Math.random()*120) - 60;
+    const dy = -6 + (Math.random()*10 - 5);
+    noBtn.style.transform = `translate(${dx}px, ${dy}px) rotate(${(Math.random()*12)-6}deg)`;
+    // reset occasionally
+    setTimeout(()=> noBtn.style.transform = 'translate(0,0)', 900);
+    // repeat slower over time
+    setTimeout(shuffle, 1800 + Math.random()*2200);
+  }
+  setTimeout(shuffle, 1200);
+}
+
+/* NO button: playful evade if mouse near */
+noBtn.addEventListener('mouseenter', evasion);
+noBtn.addEventListener('click', evasion);
+
+function evasion(){
+  const parentRect = noBtn.parentElement.getBoundingClientRect();
+  const x = Math.random() * (parentRect.width - noBtn.offsetWidth);
+  const y = Math.random() * 8 - 6;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+/* YES button -> celebration then navigate to yes.html */
+yesBtn.addEventListener('click', () => {
+  celebrate();
+  setTimeout(()=> { window.location.href = 'yes.html'; }, 800);
+});
+
+/* Definitely Yes button -> stronger celebration then navigate */
+defYesBtn.addEventListener('click', () => {
+  celebrate(true);
+  setTimeout(()=> { window.location.href = 'yes.html'; }, 800);
+});
+
+/* Modal handlers removed */
+
+/* Confetti generation */
+function celebrate(big=false){
+  // small audio bell using WebAudio
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.value = big ? 520 : 420;
+    g.gain.value = 0.0001;
+    o.connect(g); g.connect(ctx.destination);
+    o.start();
+    // ramp up then down
+    g.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.02);
+    setTimeout(()=> g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4), 200);
+    setTimeout(()=> o.stop(), 520);
+  }catch(e){
+    // audio may be blocked on some browsers
+  }
+
+  // create confetti pieces
+  const confettiArea = document.getElementById('confetti');
+  const colors = ['#ff6b8a','#ffb6c1','#fff176','#8ce99a','#a3d2ff','#cdb4db'];
+  const count = big ? 110 : 48;
+  for(let i=0;i<count;i++){
+    const el = document.createElement('div');
+    const w = 6 + Math.random()*10;
+    el.style.position='absolute';
+    el.style.left = (Math.random()*100) + '%';
+    el.style.top = '-6%';
+    el.style.width = w + 'px';
+    el.style.height = (w*0.6) + 'px';
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.opacity = 0.95;
+    el.style.transform = `rotate(${Math.random()*360}deg)`;
+    el.style.borderRadius = '2px';
+    el.style.pointerEvents = 'none';
+    el.style.zIndex = 9999;
+    confettiArea.appendChild(el);
+
+    // animate (simple)
+    const fall = 2000 + Math.random()*2200 + (big ? 800 : 0);
+    el.animate([
+      { transform: `translateY(0) rotate(${Math.random()*360}deg)`, opacity:1 },
+      { transform: `translateY(${60 + Math.random()*80}vh) rotate(${Math.random()*720}deg)`, opacity:0.9 }
+    ], {duration: fall, easing: 'cubic-bezier(.2,.8,.2,1)'});
+    // remove later
+    setTimeout(()=> el.remove(), fall+100);
+  }
+
+  // spawn extra hearts
+  for(let j=0;j<12 + (big?22:0); j++) spawnFloat();
+}
+
+/* Customize line: show prompt and update typed */
+customizeBtn.addEventListener('click', ()=>{
+  const prompt = window.prompt("Pick or paste any line for the intro (press Cancel to use a random romantic one):", selectedLine);
+  if(prompt === null) {
+    selectedLine = lines[Math.floor(Math.random()*lines.length)];
+  } else {
+    selectedLine = prompt.trim() || lines[Math.floor(Math.random()*lines.length)];
+  }
+  typeText(typedEl, selectedLine);
+});
+
+/* accessibility: keyboard triggers for yes */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){
+    // trigger continue or yes depending on state
+    if(revealEl.textContent.trim() === '' || revealEl.textContent.includes('preparing')) {
+      startReveal();
+    } else {
+      yesBtn.focus();
+      yesBtn.click();
+    }
+  }
+});
+
+/* small nicety: change title emoji and bounce */
+setInterval(()=>{
+  document.title = document.title === "Will you be my girlfriend?" ? "🌸 Will you be my girlfriend?" : "Will you be my girlfriend?";
+}, 2900);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body {
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  font-family: 'Poppins', sans-serif;
+
+}
+
+/* Responsive: tablet and phone */
+@media (max-width: 900px) {
+  body { padding: 20px; }
+}
+
+@media (max-width: 600px) {
+  body { padding: 12px; }
+}
+
+
